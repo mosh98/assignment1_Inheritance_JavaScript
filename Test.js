@@ -1,3 +1,6 @@
+
+//test Class to do random stuff
+
 /**
  *function of an Object is invoked
  *checks if the function exist within the object itself.
