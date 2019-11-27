@@ -38,6 +38,7 @@ myObject.call = function (obj, parametres) {
                 //Do something
                 b.push(a[i]);
             }
+              return Object
         }
     }
 
