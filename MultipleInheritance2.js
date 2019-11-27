@@ -28,7 +28,8 @@ aloha.call = function(funcName) {
     for (var i = 0; i < arrayLength; i++) {
         console.log("loop initiated");
         //Do something
-        if (a[i].hasOwnProperty(funcName) ){
+        var temo = a[i];
+        if (temo.name === funcName ){
             console.log("=================== ")
             console.log("      ")
             console.log("      ")
