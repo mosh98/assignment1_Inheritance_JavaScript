@@ -20,6 +20,11 @@ a.push(d);
 a.push(e);
 
 
+var myObject = {
+     e : function () {
+        console.log("ITS E");
+    }
+}
 var aloha = {};
 
 aloha.call = function(funcName) {
@@ -29,7 +34,8 @@ aloha.call = function(funcName) {
         console.log("loop initiated");
         //Do something
         var temo = a[i];
-        if (temo.name === funcName ){
+        console.log(typeof this[funcName] === 'function')
+        if (typeof this[funcName] === 'function'){
             console.log("=================== ")
             console.log("      ")
             console.log("      ")
@@ -41,4 +47,4 @@ aloha.call = function(funcName) {
 }
 
 
-var obj0 = aloha.call('d');
+console.log(aloha.hasOwnProperty("call"))

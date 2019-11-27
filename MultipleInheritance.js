@@ -6,39 +6,32 @@ var myObject = {
 
 
 myObject.create = function (a) {
-
-    var b = a
-
-    if (a === null) {
-        console.log("man wtf")
-        return Object
-    } else if (Array.isArray(a)) {
-        //console.log("terry crews")
-        /*** this where inheritance happnes*/
-        var arrayLength = a.length;
-        for (var i = 0; i < arrayLength; i++) {
-            //Do something
-            b.push(a[i]);
-        }
-        return myObject
-    }
+    var temp = {}
+   temp.__proto__ = this
+    temp.pList = a
+    return temp
 }
 
-myObject.call = function (obj, parametres) {
-    var funcName = obj;
+myObject.call = function (nameOfFunction, parametres) {
+    var funcName = nameOfFunction;
     var parametreName = parametres;
 
-    var arr = Array.from('create')
+    var arr = Array.from(myObject.create)
     var arrayLength = arr.length;
     /*    if(this.prototype.hasOwnProperty(funcName)){
             var temp = this.funcName;
             return temp(funcName);
         }*/
 
+    console.log(arr)
     for (var i = 0; i < arrayLength; i++) {
         console.log("call loop initated");
+
         //Do something
-        if (arr[i].name === funcName) {
+        //console.log(arr[i].hasOwnProperty(nameOfFunction));
+        var okoko = arr[i];
+        if ( okoko.hasOwnProperty( nameOfFunction )) {
+            console.log("halo")
             var temp = arr[i];
             return temp(parametreName);
         }
