@@ -5,10 +5,10 @@ var myObject = {
 
 
 
-myObject.create = function (a) {
+myObject.create = function (protoList) {
     var temp = {}
    temp.__proto__ = this
-    temp.pList = a
+    temp.pList = protoList
     return temp
 }
 
@@ -16,24 +16,19 @@ myObject.call = function (nameOfFunction, parametres) {
     var funcName = nameOfFunction;
     var parametreName = parametres;
 
-    var arr = Array.from(myObject.create)
+    var arr = this.pList
     var arrayLength = arr.length;
-    /*    if(this.prototype.hasOwnProperty(funcName)){
-            var temp = this.funcName;
-            return temp(funcName);
-        }*/
 
     console.log(arr)
+
     for (var i = 0; i < arrayLength; i++) {
         console.log("call loop initated");
 
-        //Do something
-        //console.log(arr[i].hasOwnProperty(nameOfFunction));
         var okoko = arr[i];
-        if ( okoko.hasOwnProperty( nameOfFunction )) {
+        if ( okoko.hasOwnProperty(funcName)) {
             console.log("halo")
             var temp = arr[i];
-            return temp(parametreName);
+            return temp.funcName(parametres);
         }
     }
 }
