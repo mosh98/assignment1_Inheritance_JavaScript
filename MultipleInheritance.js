@@ -1,8 +1,27 @@
 
-var myObject = {
+var myObject = {}
 
+myObject.call = function (obj, parametres) {
+    var funcName = obj;
+    var parametreName = parametres;
+    var arrayLength = a.length;
 
-    create: function (a) {
+    if(this.prototype.hasOwnProperty(funcName)){
+        var temp = this.prototype.funcName;
+        return temp(funcName);
+    }
+
+    for (var i = 0; i < arrayLength; i++) {
+        console.log();
+        //Do something
+        if (a[i].prototype.hasOwnProperty(funcName)) {
+            var temp = a[i];
+            return temp(parametres);
+        }
+    }
+},
+    myObject.create = function (a) {
+
 
         if (a === null)
             console.log("man wtf")
@@ -18,28 +37,15 @@ var myObject = {
 
 
         }
-    },
-
-    call: function (obj, parametres) {
-        var funcName = obj;
-        var parametreName = parametres;
-        var arrayLength = a.length;
-        for (var i = 0; i < arrayLength; i++) {
-            console.log();
-            //Do something
-            if (a[i].hasOwnProperty(obj)) {
-                var temp = a[i];
-                return temp(parametres);
-            }
-        }
     }
-}
+
+
 
 
 obj0 = myObject.create(null);
-obj0.func = function(arg) { return "func0: " + arg; };
+//obj0.func = function(arg) { return "func0: " + arg; };
 obj1 = myObject.create([obj0]);
 obj2 = myObject.create([]);
 obj3 = myObject.create([obj2, obj1]);
-result = obj3.call("func", ["hello"]);
-console.log("should print ’func0: hello’ ->", result);
+//result = obj3.call("func", ["hello"]);
+//console.log("should print ’func0: hello’ ->", result);
