@@ -28,7 +28,7 @@ myObject.call = function (nameOfFunction, parametres) {
     for (var i = 0; i < arrayLength; i++) {
         var currentObject = arr[i];
         if (currentObject.hasOwnProperty(nameOfFunction)) {
-            console.log("function Exist ? :" + currentObject.hasOwnProperty(nameOfFunction))
+           // console.log("function Exist ? :" + currentObject.hasOwnProperty(nameOfFunction))
             b.push(arr[i][nameOfFunction](parametres));
             // return arr[i][nameOfFunction](parametres);
         } else if (currentObject.list.length != 0) {
@@ -41,7 +41,7 @@ myObject.call = function (nameOfFunction, parametres) {
 
         }
     }
-    console.log("The arrayList has these elements " + b);
+    //console.log("The arrayList has these elements " + b);
 
 
     return b[0];
@@ -50,25 +50,28 @@ myObject.call = function (nameOfFunction, parametres) {
 
 /*** Alla test Program*/
 
-var obj0 = myObject.create(null);
+/*var obj0 = myObject.create(null);
 obj0.func = function (arg) {return "func0: " + arg;};
 var obj1 = myObject.create([obj0]);
 var obj2 = myObject.create([]);
 obj2.func = function (arg) {return "func2: " + arg;};
 var obj3 = myObject.create([obj1, obj2]);
 var result = obj3.call("func", ["hello"]);
-console.log("should print ’func0: hello’ ->", result);
+console.log("should print ’func0: hello’ ->", result);*/
+/*
 
-/*obj0 = myObject.create(null);
+obj0 = myObject.create(null);
 obj0.func = function (arg) {
     return "func0: " + arg;};
 obj1 = myObject.create([obj0]);
 obj2 = myObject.create([]);
 obj3 = myObject.create([obj2, obj1]);
 result = obj3.call("func", ["hello"]);
-console.log("should print ’func0: hello’ ->", result);*/
-/*
+console.log("should print ’func0: hello’ ->", result);
+*/
+
+
 obj0 = myObject.create(null);
 obj0.func = function(arg) { return "func0: " + arg; };
 result = obj0.call("func", ["hello"]);
-console.log("should print ’func0: hello’ ->", result);*/
+console.log("should print ’func0: hello’ ->", result);
