@@ -4,33 +4,37 @@ var myObject = {
 }
 
 
-
 myObject.create = function (protoList) {
     var temp = {}
    temp.__proto__ = this
-    temp.pList = protoList
+    temp.list = protoList
     return temp
 }
 
 myObject.call = function (nameOfFunction, parametres) {
     var funcName = nameOfFunction;
-    var parametreName = parametres;
-
-    var arr = this.pList
+    var arr = this.list
     var arrayLength = arr.length;
 
-    console.log(arr)
+        var smth;
 
     for (var i = 0; i < arrayLength; i++) {
-        console.log("call loop initated");
 
         var okoko = arr[i];
-        if ( okoko.hasOwnProperty(funcName)) {
-            console.log("halo")
+        if (okoko.hasOwnProperty(funcName)) {
+            console.log("function Exist ? :" + okoko.hasOwnProperty(funcName))
+
             var temp = arr[i];
-            return temp.funcName(parametres);
+            smth = arr[i];
+
+           // return smth.funcName.apply(parametres)
+            break;
         }
     }
+
+    return smth[funcName](parametres);
+
+
 }
 
 
