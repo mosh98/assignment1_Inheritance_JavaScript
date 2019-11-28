@@ -40,9 +40,12 @@ myObject.call = function (nameOfFunction, parametres) {
             })
 
         }
-        console.log(b);
-        return b[0];
     }
+    console.log("The arrayList has these elements " + b);
+
+
+    return b[0];
+
 }
 
 /*** Alla test Program*/
