@@ -15,18 +15,13 @@
  *
  **/
 
-var myObject = {
+var node1 = [1,2,3,4,5,6,7,8]
+var node2 = ["abc","hasan","azz","hola"]
+var node3 = ["True","LEGEND","haha"]
 
-}
+node1.forEach(function (item,index,array){
+    console.log(item);
+})
 
-myObject.create = function (protoList) {
-    var temp = {}
-    temp.__proto__ = this
-    temp.pList = protoList
-    return temp
-}
 
-var obj0 = myObject.create(null);
-obj0.func = function(arg) { return "func0: " + arg; };
-var obj1 = myObject.create([obj0]);
-console.log(obj1)
+
