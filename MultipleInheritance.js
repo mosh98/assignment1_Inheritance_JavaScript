@@ -4,7 +4,7 @@ var myObject = {}
 myObject.create = function (protoList) {
 
     var temp = {}
-    temp.__proto__ = this
+    temp.__proto__ = this;
 
     if(protoList === null){
         temp.list = []
