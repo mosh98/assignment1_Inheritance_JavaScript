@@ -1,9 +1,4 @@
 
-
-
-
-
-
 call = function (nameOfFunction, param) {
 
     var b = [];
