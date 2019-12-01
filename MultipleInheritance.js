@@ -48,6 +48,7 @@ myObject.call = function (nameOfFunction, parametres){
 
 
 
+
 myObject.addPrototype = function(paramObj){
 
    var tempCallerObj = this;
@@ -56,7 +57,7 @@ myObject.addPrototype = function(paramObj){
 if(paramObj.list != 0){
     if(paramObj.list.indexOf(tempCallerObj) > -1){
         console.log("WTF DID YA DO NOW SON, " );
-        throw "EXCEPTION! : CIRCULAR INHERITANCE NOT ALLOWED"
+        console.error("EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED")
     }else {
         tempCallerObj.list.push(paramObj);
     }
