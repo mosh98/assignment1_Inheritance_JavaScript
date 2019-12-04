@@ -34,16 +34,30 @@ call = function (nameOfFunction, param) {
 }
 
 createClass = function (className, classList){
-    var temp  = {};
+    var tempClass  = {};
     var tempObject = {};
-    temp.name = className;
+    tempClass.name = className;
     if(classList === null){
-        temp.list = []
+        tempClass.list = []
     }else {
-        temp.list = classList
+        tempClass.list = classList
+    }
+    tempClass.addSuperClass = function(paramObj) {
+
+        var tempCallerObj = this;
+
+
+        if (paramObj.list != 0) {
+            if (paramObj.list.indexOf(tempCallerObj) > -1) {
+                throw("EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED")
+            } else {
+                tempCallerObj.list.push(paramObj);
+            }
+
+        }
     }
 
-    temp.new = function () {
+    tempClass.new = function () {
         tempObject.__proto__ = this;
         tempObject.call = function (nameOfFunction, parametres) {
             var b = [];
@@ -79,15 +93,17 @@ createClass = function (className, classList){
         }
         return tempObject;
     }
-    return temp;
+    return tempClass;
 }
 
 
 
 
+var class0 = createClass("Class 0", null);
+var class1 = createClass("Class 1", [class0]);
+class0.addSuperClass(class1);
 
-
-
+/*
 var class0 = createClass("Class0", null);
 console
 class0.func = function(arg) { return "func0: " + arg; };
@@ -100,4 +116,4 @@ class4.func = function(arg) { return "func4: " + arg; };
 var obj4 = class4.new();
 
 var result = obj4.call("func", ["hello"]);
-console.log(result)
+console.log(result) */
