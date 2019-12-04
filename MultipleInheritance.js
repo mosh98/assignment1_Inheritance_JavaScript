@@ -40,49 +40,40 @@ myObject.call = function (nameOfFunction, parametres){
                     b.push(item[nameOfFunction](parametres));
                 }
             })
+
         }
     }
     return b[0];
 }
 
-myObject.search = function(obj, param){
-    var lista = obj.list;
 
-    if (lista.indexOf(param) > -1){
-        throw "EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED "
+
+myObject.addPrototype = function(newPrototype){
+
+   if(newPrototype.list != 0){
+        if(newPrototype.list.indexOf(this) == -1){
+            newPrototype.list.forEach(obj => obj.addPrototype(newPrototype))
+        }else{
+            throw("EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED");
+        }
+    }else{
+        this.list.push(newPrototype);
+   }
+
+
+
+
+
+
+/*
+if(newPrototype.list != 0){
+    if(newPrototype.list.indexOf(tempCallerObj) > -1){
+        console.error("EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED")
     }else {
-        return null;
+        tempCallerObj.list.push(newPrototype);
     }
+} */
 
-}
-
-myObject.addPrototype = function (paramObj) {
-    var tempCallerObj = this;
-    var tempCallerObjList = tempCallerObj.list;
-
-    //tempCallerObj.search(this,paramObj);
-
-    if( tempCallerObj.search(this,paramObj) == null){
-        if(tempCallerObjList != 0){
-            tempCallerObjList.forEach(element =>{
-                if(tempCallerObj.search(element,paramObj) == null){
-                    return
-                }
-            });
-        }
-    }
-
-
-    if (paramObj.list != 0) {
-        if (paramObj.list.indexOf(tempCallerObj) > -1) {
-            console.error("EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED");
-        }
-
-
-    } else {
-        tempCallerObj.list.push(paramObj);
-        console.log("Pushed in");
-    }
 }
 
 
@@ -120,24 +111,11 @@ result = obj0.call("func", ["hello"]);
 console.log("should print ’func0: hello’ ->", result);
 */
 
-/** Checks for circular inheritance */
-
-/*
-var obj0 = myObject.create(null);
-var obj1 = myObject.create([obj0]);
-var obj2 = myObject.create([])
-obj0.addPrototype(obj1);*/
-
-        /** Circular inheritance Example 2*/
+/** Checks for cdercular inheritance */
 obj1 = myObject.create(null);
 obj2 = myObject.create(null);
 obj3 = myObject.create(null);
-AmazingObj1 = myObject.create(null);
-AmazingObj2 = myObject.create(null);
-obj2.addPrototype(AmazingObj1);
 
-
-/*obj0 = myObject.create([obj1,obj2,obj3]);
+obj0 = myObject.create([obj1,obj2,obj3]);
 obj4 = myObject.create([obj0]);
-obj4.addPrototype(obj3);*/
-
+obj3.addPrototype(obj4);
