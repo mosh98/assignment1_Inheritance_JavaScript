@@ -78,10 +78,10 @@ myObject.addPrototype = function (paramObj) {
             console.error("EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED");
         }
 
-        else {
-            tempCallerObj.list.push(paramObj);
-            console.log("Pushed in : " + paramObj.toString())
-        }
+
+    } else {
+        tempCallerObj.list.push(paramObj);
+        console.log("Pushed in");
     }
 }
 
@@ -134,10 +134,10 @@ obj2 = myObject.create(null);
 obj3 = myObject.create(null);
 AmazingObj1 = myObject.create(null);
 AmazingObj2 = myObject.create(null);
-//obj2.addPrototype(AmazingObj1);
+obj2.addPrototype(AmazingObj1);
 
 
-obj0 = myObject.create([obj1,obj2,obj3]);
+/*obj0 = myObject.create([obj1,obj2,obj3]);
 obj4 = myObject.create([obj0]);
-obj4.addPrototype(obj3);
+obj4.addPrototype(obj3);*/
 
