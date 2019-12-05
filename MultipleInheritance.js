@@ -6,7 +6,7 @@ myObject.create = function (protoList) {
     var temp = {}
     temp.__proto__ = this;
 
-    if(protoList === null){
+    if(protoList == null){
         temp.list = []
     }else {
         temp.list = protoList
@@ -46,23 +46,22 @@ myObject.call = function (nameOfFunction, parametres){
     return b[0];
 }
 
-
-
-myObject.addPrototype = function(newPrototype){
-
-   if(newPrototype.list != 0){
-        if(newPrototype.list.indexOf(this) == -1){
-            newPrototype.list.forEach(obj => obj.addPrototype(newPrototype))
-        }else{
-            throw("EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED");
+myObject.checkProto = function(targetProto) {
+    if(this.list != 0){
+        if(this.list.indexOf(targetProto) == -1) {
+            this.list.forEach(obj => obj.checkProto(targetProto))
+        } else{
+            throw "EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED";
         }
-    }else{
-        this.list.push(newPrototype);
-   }
+    }
+}
 
+myObject.addPrototype = function(newPrototype) {
 
+    newPrototype.checkProto(this);
+    this.list.push(newPrototype);
 
-
+}
 
 
 /*
@@ -74,7 +73,7 @@ if(newPrototype.list != 0){
     }
 } */
 
-}
+
 
 
 /*** Alla test Program for protoype*/
@@ -118,4 +117,4 @@ obj3 = myObject.create(null);
 
 obj0 = myObject.create([obj1,obj2,obj3]);
 obj4 = myObject.create([obj0]);
-obj3.addPrototype(obj4);
+obj4.addPrototype(obj3);

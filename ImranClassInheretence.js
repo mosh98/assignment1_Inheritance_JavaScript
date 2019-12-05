@@ -9,14 +9,37 @@ createClass = function (className, classList){
     }else {
         tempClass.list = classList
     }
+    tempClass.checkSuperClass = function(targetClass){
+        if(this.list != 0){
+            if(this.list.indexOf(targetClass) == -1){
+                this.list.forEach(obj => obj.checkSuperClass(targetClass))
+            } else {
+                throw "EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED";
+            }
+        }
+    }
+    tempClass.addSuperClass = function(newSuperClass) {
+        newSuperClass.checkSuperClass(this);
+        this.list.push(newSuperClass);
 
 
 
-    tempClass.addSuperClass = function(paramObj) {
 
-        var tempCallerObj = this;
+    }
+        /*
+        if (newSuperClass.list != 0) {
+            if (newSuperClass.list.indexOf(this) == -1) {
+                newSuperClass.list.forEach(obj => obj.addSuperClass(newSuperClass))
+            } else {
+                throw  "EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED";
+            }
+        } else {
+            this.list.push(newSuperClass);
+        }
+  */
 
 
+/*
         if (paramObj.list != 0) {
             if (paramObj.list) {
                 throw("EXCEPTION: CIRCULAR INHERITANCE NOT ALLOWED")
@@ -25,7 +48,7 @@ createClass = function (className, classList){
             }
 
         }
-    }
+    }  */
 
     tempClass.new = function () {
         tempObject.__proto__ = this;
@@ -77,29 +100,3 @@ class1.addSuperClass(class3);
 
 
 
-
-/*
-class0 = createClass("Class0", null);
-class0.func = function(arg) { return "func0: " + arg; };
-class1 = createClass("Class1", [class0]);
-class2 = createClass("Class2", []);
-class3 = createClass("Class3", [class2, class1]);
-obj3 = class3.new();
-result = obj3.call("func", ["hello"]);
-console.log(result);
-class0.addSuperClass(class3); */
-
-/*
-var class0 = createClass("Class0", null);
-console
-class0.func = function(arg) { return "func0: " + arg; };
-var class1 = createClass("Class1", [class0]);
-var class2 = createClass("Class2", []);
-class2.func = function(arg) { return "func2: " + arg; };
-var class3 = createClass("Class3", [class1, class2]);
-var class4 = createClass("Class4", [class3]);
-class4.func = function(arg) { return "func4: " + arg; };
-var obj4 = class4.new();
-
-var result = obj4.call("func", ["hello"]);
-console.log(result) */
