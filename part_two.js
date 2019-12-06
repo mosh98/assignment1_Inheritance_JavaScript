@@ -33,6 +33,7 @@ createClass = function (className, classList){
             if(this.__proto__.hasOwnProperty(nameOfFunction)){
                 return this[nameOfFunction](parametres)
             }
+            
 
         }
 
