@@ -6,7 +6,7 @@ myObject.create = function (protoList) {
     var temp = {}
     temp.__proto__ = this;
 
-    if(protoList == null){
+    if(protoList === null){
         temp.list = []
     }else {
         temp.list = protoList
