@@ -1,8 +1,8 @@
-
+//moma1820 Mosleh Mahamud
+//imqu5918 Imran Qumtur
 
 createClass = function (className, classList){
     var tempClass  = {};
-    var tempObject = {};
     tempClass.name = className;
     if(classList == null){
         tempClass.list = []
@@ -22,56 +22,41 @@ createClass = function (className, classList){
         newSuperClass.checkSuperClass(this);
         this.list.push(newSuperClass);
 
-
-
-
     }
-
+    tempClass.searchFunc = function(nameOfFunction, param){
+        var check
+        var result;
+        if(this.hasOwnProperty(nameOfFunction)){
+            result = this[nameOfFunction](param)
+            return result;
+        }else{
+            if(this.list != 0) {
+               this.list.forEach(function(item){
+                         check = item.searchFunc(nameOfFunction, param);
+                         if(typeof result == "undefined"){
+                             result = check;
+                         }
+                })
+            }
+        }
+        return result;
+    }
     tempClass.new = function () {
+        var tempObject = {};
         tempObject.__proto__ = this;
-        tempObject.searchFunc = function(nameOfFunction){
-            if(this.__proto__.hasOwnProperty(nameOfFunction)){
-                return this[nameOfFunction](parametres)
+        tempObject.call = function (nameOfFunction, param) {
+            var result;
+            if(tempObject.__proto__.hasOwnProperty(nameOfFunction)){
+                result = this[nameOfFunction](param);
+            } else{
+                result = tempObject.__proto__.searchFunc(nameOfFunction, param);
             }
-            
-
+            return result;
         }
-        tempObject.call = function (nameOfFunction, parametres) {
-            var b = [];
-            var arr = this.list
-            var arrayLength = arr.length;
-            if(this.__proto__.hasOwnProperty(nameOfFunction)){
-                return this[nameOfFunction](parametres)
-            }
-            for (var i = 0; i < arrayLength; i++) {
-                var currentObject = arr[i];
-                if (currentObject.hasOwnProperty(nameOfFunction)) {
-                    b.push(arr[i][nameOfFunction](parametres));
-                } else if (currentObject.list.length != 0) {
-                    var tempArr = currentObject.list;
-                    tempArr.forEach(function (item,index,array){
-                        if (item.hasOwnProperty(nameOfFunction)) {
-                            b.push(item[nameOfFunction](parametres));
-                        }
-                    })
-                }
-            }
-            return b[0];
-        }
-
-
         return tempObject;
     }
     return tempClass;
 }
 
-/*
-var class0 = createClass("Class 0", null);
-var class1 = createClass("Class 1", [class0]);
-var class2 = createClass("Class 2", [class1]);
-var class3 = createClass("Class 3", [class2]);
-class0.func = function(arg) { return "func0: " + arg; };
-var obj0 = class3.new();
-result = obj0.call("func", ["hello"]);
-console.log(result);
-*/
+
+
