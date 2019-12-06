@@ -43,6 +43,7 @@ myObject.call = function (nameOfFunction, parametres){
 
         }
     }
+
     return b[0];
 }
 
@@ -90,17 +91,36 @@ console.log("should print ’func0: hello’ ->", result);
 */
 
 
-/*
 
-obj0 = myObject.create(null);
+/*obj0 = myObject.create(null);
 obj0.func = function (arg) {
     return "func0: " + arg;};
 obj1 = myObject.create([obj0]);
 obj2 = myObject.create([]);
 obj3 = myObject.create([obj2, obj1]);
 result = obj3.call("func", ["hello"]);
-console.log("should print ’func0: hello’ ->", result);
-*/
+console.log("should print ’func0: hello’ ->", result);*/
+
+/**
+ * var class0 = createClass("Class 0", null);
+ var class1 = createClass("Class 1", [class0]);
+ var class2 = createClass("Class 2", [class1]);
+ var class3 = createClass("Class 3", [class2]);
+ class0.func = function(arg) { return "func0: " + arg; };
+ var obj0 = class3.new();
+ result = obj0.call("func", ["hello"]);
+ console.log(result);
+ */
+
+
+obj0 = myObject.create(null);
+obj1 = myObject.create([obj0])
+obj2 = myObject.create([obj1])
+obj3 = myObject.create([obj2])
+obj0.func = function (arg) {
+    return "func0: " + arg;};
+result = obj3.call("func", ["hello"]);
+console.log(result);
 
 /*
 
@@ -111,10 +131,10 @@ console.log("should print ’func0: hello’ ->", result);
 */
 
 /** Checks for cdercular inheritance */
-obj1 = myObject.create(null);
+/*obj1 = myObject.create(null);
 obj2 = myObject.create(null);
 obj3 = myObject.create(null);
 
 obj0 = myObject.create([obj1,obj2,obj3]);
 obj4 = myObject.create([obj0]);
-obj4.addPrototype(obj3);
+obj4.addPrototype(obj3);*/

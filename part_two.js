@@ -36,9 +36,6 @@ createClass = function (className, classList){
             
 
         }
-
-
-
         tempObject.call = function (nameOfFunction, parametres) {
             var b = [];
             var arr = this.list
@@ -63,13 +60,12 @@ createClass = function (className, classList){
         }
 
 
-
-
         return tempObject;
     }
     return tempClass;
 }
 
+/*
 var class0 = createClass("Class 0", null);
 var class1 = createClass("Class 1", [class0]);
 var class2 = createClass("Class 2", [class1]);
@@ -78,3 +74,4 @@ class0.func = function(arg) { return "func0: " + arg; };
 var obj0 = class3.new();
 result = obj0.call("func", ["hello"]);
 console.log(result);
+*/
